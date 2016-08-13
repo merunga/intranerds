@@ -21,7 +21,7 @@ var banner = ['/*!\n',
 ].join('');
 
 // Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy', 'copy-to-dist']);
 
 // sass task to compile the sass files and add the banner
 gulp.task('sass', function() {
@@ -109,7 +109,7 @@ gulp.task('clean-dist', function() {
 
 gulp.task('copy-to-dist', function() {
   return gulp.src([
-    'css', 'index.html', 'img', 'js', 'vendor'
+    'css/**/*', 'index.html', 'img/**/*', 'js/**/*', 'vendor/**/*'
   ]).pipe(gulpCopy('dist'));
 })
 
