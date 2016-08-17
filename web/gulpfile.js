@@ -109,7 +109,7 @@ gulp.task('clean-dist', function() {
 
 gulp.task('copy-to-dist', function() {
   return gulp.src([
-    'css/**/*', 'index.html', 'img/**/*', 'js/**/*', 'vendor/**/*'
+    'css/**/*', 'index.html', 'img/**/*', 'js/**/*', 'vendor/**/*', 'CNAME'
   ]).pipe(gulpCopy('dist'));
 })
 
