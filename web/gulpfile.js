@@ -9,6 +9,7 @@ var uglify = require('gulp-uglify');
 var ghPages = require('gulp-gh-pages');
 var clean = require('gulp-clean');
 var gulpCopy = require('gulp-copy');
+var runSequence = require('run-sequence');
 var pkg = require('./package.json');
 
 // Set the banner content
@@ -104,7 +105,7 @@ gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() 
 });
 
 gulp.task('clean-dist', function() {
-  return gulp.src('dist').pipe(clean({force: true}));
+  gulp.src('dist').pipe(clean({force: true}));
 })
 
 gulp.task('copy-to-dist', function() {
@@ -118,4 +119,14 @@ gulp.task('gh-deploy', function() {
     .pipe(ghPages());
 });
 
-gulp.task('deploy', ['clean-dist','copy-to-dist','gh-deploy']);
+gulp.task('build', function(done) {
+  runSequence('default', function() {
+    done();
+  });
+});
+
+gulp.task('deploy', function(done) {
+  runSequence('build', 'gh-deploy', function() {
+    done();
+  });
+});

@@ -67,6 +67,15 @@ h6 {
   background-color: $gray-darkest;
 }
 
+.quote {
+  .section-heading {
+    color: $gray-lighter;
+    // @include body-font;
+  }
+  background-color: $gray-darkest;
+
+}
+
 // Restyled Primary Buttons
 
 .btn-primary {
@@ -279,9 +288,35 @@ section {
   text-transform: none;
 }
 
+.servicios-link {
+  span {
+    i:nth-child(1) {
+      color: #18DD00;
+    }
+    i:nth-child(2) {
+      color: black;
+    }
+  }
+
+  &:hover span {
+    i:nth-child(1) {
+      color: blacK;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    i:nth-child(2) {
+      color: #18DD00;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+  }
+}
+
 // Portfolio Section
 
-#portfolio {
+#portafolio {
   .portfolio-item {
     margin: 0 0 15px;
     right: 0;
@@ -355,7 +390,7 @@ section {
 }
 
 @media(min-width:767px) {
-  #portfolio {
+  #portafolio {
     .portfolio-item {
       margin: 0 0 30px;
     }
@@ -598,7 +633,7 @@ section {
 
 // Clients Aside
 
-aside.clients {
+aside.clientes {
   img {
     margin: 50px auto;
   }
@@ -606,7 +641,7 @@ aside.clients {
 
 // Contact Section
 
-section#contact {
+section#contacto {
   background-color: $gray-darkest;
   background-image: url('../img/map-image.png');
   background-position: center;

@@ -68,6 +68,11 @@ h6 {
 .bg-darkest-gray {
   background-color: #222; }
 
+.quote {
+  background-color: #222; }
+  .quote .section-heading {
+    color: #f7f7f7; }
+
 .btn-primary {
   color: black;
   background-color: #18DD00;
@@ -256,36 +261,32 @@ section {
   text-transform: none; }
 
 .servicios-link span i:nth-child(1) {
-  color: #18DD00;
-}
+  color: #18DD00; }
 
 .servicios-link span i:nth-child(2) {
-  color: black;
-}
+  color: black; }
 
 .servicios-link:hover span i:nth-child(1) {
-  color: black;
+  color: blacK;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
-}
+  transition: all 0.3s; }
 
 .servicios-link:hover span i:nth-child(2) {
   color: #18DD00;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
-}
+  transition: all 0.3s; }
 
-#portafolio  .portfolio-item {
+#portafolio .portfolio-item {
   margin: 0 0 15px;
   right: 0; }
-  #portafolio  .portfolio-item .portfolio-link {
+  #portafolio .portfolio-item .portfolio-link {
     display: block;
     position: relative;
     max-width: 400px;
     margin: 0 auto; }
-    #portafolio  .portfolio-item .portfolio-link .portfolio-hover {
+    #portafolio .portfolio-item .portfolio-link .portfolio-hover {
       background: fade(#18DD00, 90%);
       position: absolute;
       width: 100%;
@@ -294,9 +295,9 @@ section {
       transition: all ease 0.5s;
       -webkit-transition: all ease 0.5s;
       -moz-transition: all ease 0.5s; }
-      #portafolio  .portfolio-item .portfolio-link .portfolio-hover:hover {
+      #portafolio .portfolio-item .portfolio-link .portfolio-hover:hover {
         opacity: 1; }
-      #portafolio  .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
+      #portafolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
         position: absolute;
         width: 100%;
         height: 20px;
@@ -305,31 +306,31 @@ section {
         top: 50%;
         margin-top: -12px;
         color: white; }
-        #portafolio  .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
+        #portafolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
           margin-top: -12px; }
-        #portafolio  .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
-        #portafolio  .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
+        #portafolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
+        #portafolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
           margin: 0; }
-  #portafolio  .portfolio-item .portfolio-caption {
+  #portafolio .portfolio-item .portfolio-caption {
     max-width: 400px;
     margin: 0 auto;
     background-color: white;
     text-align: center;
     padding: 25px; }
-    #portafolio  .portfolio-item .portfolio-caption h4 {
+    #portafolio .portfolio-item .portfolio-caption h4 {
       text-transform: none;
       margin: 0; }
-    #portafolio  .portfolio-item .portfolio-caption p {
+    #portafolio .portfolio-item .portfolio-caption p {
       font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-style: italic;
       font-size: 16px;
       margin: 0; }
 
-#portafolio  * {
+#portafolio * {
   z-index: 2; }
 
 @media (min-width: 767px) {
-  #portafolio  .portfolio-item {
+  #portafolio .portfolio-item {
     margin: 0 0 30px; } }
 
 .timeline {
@@ -479,7 +480,7 @@ section {
   .team-member p {
     margin-top: 0; }
 
-aside.clients img {
+aside.clientes img {
   margin: 50px auto; }
 
 section#contacto {
@@ -496,7 +497,7 @@ section#contacto {
       padding: 20px; }
     section#contacto .form-group input.form-control {
       height: auto; }
-    section#conta#portafolio cto .form-group textarea.form-control {
+    section#contacto .form-group textarea.form-control {
       height: 236px; }
   section#contacto .form-control:focus {
     border-color: #18DD00;
