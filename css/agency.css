@@ -69,7 +69,17 @@ h6 {
   background-color: #222; }
 
 .quote {
-  background-color: #222; }
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#380700+0,000000+100 */
+  background: #120300;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #120300 0%, #222 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #120300 0%, #222 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #120300 0%, #222 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$bomba-color', endColorstr='$gray-darkest',GradientType=0 );
+  /* IE6-9 */ }
   .quote .section-heading {
     color: #f7f7f7; }
 
@@ -136,7 +146,7 @@ h6 {
   .navbar-default .navbar-brand {
     color: #18DD00;
     font-family: "nintender", "Helvetica Neue", Helvetica, Arial, cursive;
-    border: 5px solid #18DD00;
+    border: 8px solid #18DD00;
     border-radius: 50px;
     padding-bottom: 35px; }
     .navbar-default .navbar-brand.active, .navbar-default .navbar-brand:active, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
@@ -189,9 +199,27 @@ h6 {
     padding: 10px 0; }
     .navbar-custom.affix .navbar-brand {
       font-size: 1.3em;
-      line-height: 1.3em;
       padding-bottom: 0;
-      padding-top: 9px; } }
+      padding-top: 8px;
+      border: 5px solid #18DD00;
+      height: 43px;
+      margin-top: 3px; } }
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-color: #e7e7e7; }
+
+@media (max-width: 768px) {
+  .navbar-default .navbar-brand {
+    font-size: 1.3em;
+    padding-bottom: 0;
+    padding-top: 8px;
+    border: 5px solid #18DD00;
+    height: 43px;
+    margin-top: 5px; }
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #18DD00; }
+  .navbar-toggle {
+    margin-right: 3px; } }
 
 header {
   background-image: url("../img/header-bg.jpg");
@@ -224,7 +252,7 @@ header {
 @media (min-width: 768px) {
   header .intro-text {
     padding-top: 300px;
-    padding-bottom: 200px; }
+    padding-bottom: 400px; }
     header .intro-text .intro-lead-in {
       font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-style: italic;
@@ -238,6 +266,10 @@ header {
       font-size: 75px;
       line-height: 75px;
       margin-bottom: 50px; } }
+
+@media (max-width: 415px) {
+  header .intro-text {
+    word-break: break-all; } }
 
 section {
   padding: 100px 0; }
@@ -484,14 +516,16 @@ aside.clientes img {
   margin: 50px auto; }
 
 section#contacto {
-  background-color: #222;
-  background-image: url("../img/map-image.png");
+  background-color: #030e08;
+  background-image: url("../img/map-image.jpg");
   background-position: center;
   background-repeat: no-repeat; }
   section#contacto .section-heading {
     color: white; }
   section#contacto .form-group {
     margin-bottom: 25px; }
+    section#contacto .form-group .form-control {
+      background-color: rgba(0, 0, 0, 0.8); }
     section#contacto .form-group input,
     section#contacto .form-group textarea {
       padding: 20px; }
