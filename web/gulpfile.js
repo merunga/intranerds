@@ -10,6 +10,11 @@ var ghPages = require('gulp-gh-pages');
 var clean = require('gulp-clean');
 var gulpCopy = require('gulp-copy');
 var runSequence = require('run-sequence');
+var nunjucks = require('nunjucks'),
+    markdown = require('nunjucks-markdown'),
+    marked = require('marked'),
+    gulpnunjucks = require('gulp-nunjucks');
+
 var pkg = require('./package.json');
 
 // Set the banner content
@@ -22,7 +27,7 @@ var banner = ['/*!\n',
 ].join('');
 
 // Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy', 'copy-to-dist']);
+gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy', 'pages', 'copy-to-dist']);
 
 // sass task to compile the sass files and add the banner
 gulp.task('sass', function() {
@@ -89,13 +94,13 @@ gulp.task('copy', ['bootstrap', 'jquery', 'fontawesome']);
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: ''
+      baseDir: 'dist'
     },
   })
 })
 
 // Watch Task that compiles sass and watches for HTML or JS changes and reloads with browserSync
-gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() {
+gulp.task('dev', ['browserSync', 'pages', 'sass', 'minify-css', 'minify-js'], function() {
   gulp.watch('scss/*.scss', ['sass']);
   gulp.watch('css/*.css', ['minify-css']);
   gulp.watch('js/*.js', ['minify-js']);
@@ -104,13 +109,32 @@ gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() 
   gulp.watch('js/**/*.js', browserSync.reload);
 });
 
-gulp.task('clean-dist', function() {
+var templates = './templates'; //Set this as the folder that contains your nunjuck files
+var pages = './pages';
+var env = new nunjucks.Environment(new nunjucks.FileSystemLoader([templates,pages]));
+
+// The second argument can be any function that renders markdown
+markdown.register(env, marked);
+
+gulp.task('pages', ['copy-to-dist'], function() {
+    // Gets .html files. see file layout at bottom
+    return gulp.src([pages + '/*.html', pages + '/**/*.html'])
+        // Renders template with nunjucks and marked
+        .pipe(gulpnunjucks.compile("", {env: env}))
+        // output files in dist folder
+        .pipe(gulp.dest('dist'))
+        .pipe(browserSync.reload({
+          stream: true
+        }))
+});
+
+gulp.task('clean', function() {
   gulp.src('dist').pipe(clean({force: true}));
 })
 
 gulp.task('copy-to-dist', function() {
   return gulp.src([
-    'css/**/*', 'index.html', 'img/**/*', 'js/**/*', 'vendor/**/*', 'CNAME'
+    'css/**/*', 'img/**/*', 'js/**/*', 'vendor/**/*', 'CNAME'
   ]).pipe(gulpCopy('dist'));
 })
 
