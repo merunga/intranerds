@@ -284,10 +284,6 @@ section {
     font-weight: 400;
     margin-bottom: 75px; }
 
-@media (min-width: 768px) {
-  section {
-    padding: 150px 0; } }
-
 .service-heading {
   margin: 15px 0;
   text-transform: none; }
@@ -519,13 +515,22 @@ section#contacto {
   background-color: #030e08;
   background-image: url("../img/map-image.jpg");
   background-position: center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-size: cover; }
   section#contacto .section-heading {
-    color: white; }
+    color: white;
+    background-color: #030e08;
+    display: inline-block;
+    padding-right: 2px;
+    padding-left: 2px; }
+  section#contacto .submit-btn {
+    margin-top: 70px; }
   section#contacto .form-group {
     margin-bottom: 25px; }
     section#contacto .form-group .form-control {
-      background-color: rgba(0, 0, 0, 0.8); }
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      font-weight: bold; }
     section#contacto .form-group input,
     section#contacto .form-group textarea {
       padding: 20px; }

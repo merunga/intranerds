@@ -315,11 +315,11 @@ section {
   }
 }
 
-@media(min-width:768px) {
-  section {
-    padding: 150px 0;
-  }
-}
+// @media(min-width:768px) {
+//   section {
+//     padding: 150px 0;
+//   }
+// }
 
 // Services Section
 
@@ -686,9 +686,18 @@ section#contacto {
   background-image: url('../img/map-image.jpg');
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
 
   .section-heading {
     color: white;
+    background-color: #030e08;
+    display: inline-block;
+    padding-right: 2px;
+    padding-left: 2px;
+  }
+
+  .submit-btn {
+    margin-top: 70px;
   }
 
   .form-group {
@@ -696,6 +705,8 @@ section#contacto {
 
     .form-control {
       background-color: rgba(0,0,0,0.8);
+      color: white;
+      font-weight: bold;
     }
 
     input,
