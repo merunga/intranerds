@@ -72,8 +72,13 @@ h6 {
     color: $gray-lighter;
     // @include body-font;
   }
-  background-color: $gray-darkest;
-
+  $bomba-color: #120300;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#380700+0,000000+100 */
+  background: $bomba-color; /* Old browsers */
+  background: -moz-linear-gradient(top,  $bomba-color 0%, $gray-darkest 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  $bomba-color 0%,$gray-darkest 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  $bomba-color 0%, $gray-darkest 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$bomba-color', endColorstr='$gray-darkest',GradientType=0 ); /* IE6-9 */
 }
 
 // Restyled Primary Buttons
@@ -110,7 +115,7 @@ h6 {
       color: darken($brand-primary, 10%);
     }
 
-    border: 5px solid $brand-primary;
+    border: 8px solid $brand-primary;
     border-radius: 50px;
     padding-bottom: 35px;
   }
@@ -191,10 +196,37 @@ h6 {
 
     .navbar-brand {
       font-size: 1.3em;
-      line-height: 1.3em;
       padding-bottom: 0;
-      padding-top: 9px;
+      padding-top: 8px;
+      border: 5px solid $brand-primary;
+      height: 43px;
+      margin-top: 3px;
     }
+  }
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #e7e7e7;
+}
+
+@media(max-width:768px) {
+  .navbar-default {
+    .navbar-brand {
+      font-size: 1.3em;
+      padding-bottom: 0;
+      padding-top: 8px;
+      border: 5px solid $brand-primary;
+      height: 43px;
+      margin-top: 5px;
+    }
+
+    .navbar-collapse, .navbar-form {
+      border-color: $brand-primary;
+    }
+  }
+
+  .navbar-toggle {
+    margin-right: 3px;
   }
 }
 
@@ -233,7 +265,7 @@ header {
   header {
     .intro-text {
       padding-top: 300px;
-      padding-bottom: 200px;
+      padding-bottom: 400px;
 
       .intro-lead-in {
         @include serif-font;
@@ -250,6 +282,14 @@ header {
         line-height: 75px;
         margin-bottom: 50px;
       }
+    }
+  }
+}
+
+@media(max-width:415px) {
+  header {
+    .intro-text {
+      word-break: break-all;
     }
   }
 }
@@ -642,8 +682,8 @@ aside.clientes {
 // Contact Section
 
 section#contacto {
-  background-color: $gray-darkest;
-  background-image: url('../img/map-image.png');
+  background-color: #030e08;
+  background-image: url('../img/map-image.jpg');
   background-position: center;
   background-repeat: no-repeat;
 
@@ -653,6 +693,10 @@ section#contacto {
 
   .form-group {
     margin-bottom: 25px;
+
+    .form-control {
+      background-color: rgba(0,0,0,0.8);
+    }
 
     input,
     textarea {
