@@ -10,10 +10,9 @@ var ghPages = require('gulp-gh-pages');
 var clean = require('gulp-clean');
 var gulpCopy = require('gulp-copy');
 var runSequence = require('run-sequence');
-var nunjucks = require('nunjucks'),
-    markdown = require('nunjucks-markdown'),
-    marked = require('marked'),
-    gulpnunjucks = require('gulp-nunjucks');
+var nunjucks = require('gulp-nunjucks-html');
+var markdown = require('nunjucks-markdown'),
+    marked = require('marked');
 
 var pkg = require('./package.json');
 
@@ -34,7 +33,7 @@ gulp.task('sass', function() {
   return gulp.src('scss/agency.scss')
     .pipe(sass())
     .pipe(header(banner, { pkg: pkg }))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('.tmp/css/'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -42,10 +41,10 @@ gulp.task('sass', function() {
 
 // Minify CSS
 gulp.task('minify-css', function() {
-  return gulp.src('css/agency.css')
+  return gulp.src('.tmp/css/agency.css')
     .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('dist/css'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -100,32 +99,40 @@ gulp.task('browserSync', function() {
 })
 
 // Watch Task that compiles sass and watches for HTML or JS changes and reloads with browserSync
-gulp.task('dev', ['browserSync', 'pages', 'sass', 'minify-css', 'minify-js'], function() {
-  gulp.watch('scss/*.scss', ['sass']);
-  gulp.watch('css/*.css', ['minify-css']);
-  gulp.watch('js/*.js', ['minify-js']);
-  // Reloads the browser whenever HTML or JS files change
-  gulp.watch('*.html', browserSync.reload);
-  gulp.watch('js/**/*.js', browserSync.reload);
-});
+gulp.task('dev', [
+    'browserSync', 'pages', 'sass',
+    'minify-css', 'minify-js'
+  ], function() {
+    gulp.watch('scss/*.scss', ['sass']);
+    gulp.watch('.tmp/css/*.css', ['minify-css']);
+    gulp.watch('js/*.js', ['minify-js']);
+    gulp.watch([
+      'includes/**/*.html',
+      'pages/**/*.html',
+      'templates/**/*.html'
+    ], ['pages']);
+
+    // Reloads the browser whenever HTML or JS files change
+    gulp.watch('dist/**/*.html', browserSync.reload);
+    gulp.watch('js/**/*.js', browserSync.reload);
+  }
+);
 
 var templates = './templates'; //Set this as the folder that contains your nunjuck files
 var pages = './pages';
-var env = new nunjucks.Environment(new nunjucks.FileSystemLoader([templates,pages]));
+var includes = './includes';
+var nunjucksCtx = [templates, pages, includes];
 
-// The second argument can be any function that renders markdown
-markdown.register(env, marked);
-
-gulp.task('pages', ['copy-to-dist'], function() {
-    // Gets .html files. see file layout at bottom
-    return gulp.src([pages + '/*.html', pages + '/**/*.html'])
-        // Renders template with nunjucks and marked
-        .pipe(gulpnunjucks.compile("", {env: env}))
-        // output files in dist folder
-        .pipe(gulp.dest('dist'))
-        .pipe(browserSync.reload({
-          stream: true
-        }))
+gulp.task('pages', ['copy-to-dist'], function(){
+  return gulp.src(pages + '/**/*.html')
+    .pipe(nunjucks({
+      searchPaths: nunjucksCtx,
+      // setUp: function(env) {
+      //   markdown.register(env, marked);
+      // }
+    }))
+    // .pipe(gulpif(env.p, minifyHtml()))
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('clean', function() {
@@ -133,9 +140,12 @@ gulp.task('clean', function() {
 })
 
 gulp.task('copy-to-dist', function() {
-  return gulp.src([
-    'css/**/*', 'img/**/*', 'js/**/*', 'vendor/**/*', 'CNAME'
+  gulp.src([
+    'img/**/*', 'js/**/*', 'vendor/**/*', 'CNAME'
   ]).pipe(gulpCopy('dist'));
+  return gulp.src([
+    'fonts/**/*'
+  ]).pipe(gulpCopy('dist/css'));
 })
 
 gulp.task('gh-deploy', function() {
