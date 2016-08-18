@@ -13,6 +13,7 @@ var runSequence = require('run-sequence');
 var nunjucks = require('gulp-nunjucks-html');
 var markdown = require('nunjucks-markdown'),
     marked = require('marked');
+var imagemin = require('gulp-imagemin');
 
 var pkg = require('./package.json');
 
@@ -26,7 +27,7 @@ var banner = ['/*!\n',
 ].join('');
 
 // Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy', 'pages', 'copy-to-dist']);
+gulp.task('default', ['sass', 'minify-css', 'minify-js', 'optimize-img', 'copy', 'pages', 'copy-to-dist']);
 
 // sass task to compile the sass files and add the banner
 gulp.task('sass', function() {
@@ -62,16 +63,22 @@ gulp.task('minify-js', function() {
     }))
 });
 
+gulp.task('optimize-img', function() {
+  gulp.src('img/**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/img'))
+});
+
 // Copy Bootstrap core files from node_modules to vendor directory
 gulp.task('bootstrap', function() {
   return gulp.src(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
-    .pipe(gulp.dest('vendor/bootstrap'))
+    .pipe(gulp.dest('dist/vendor/bootstrap'))
 })
 
 // Copy jQuery core files from node_modules to vendor directory
 gulp.task('jquery', function() {
   return gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
-    .pipe(gulp.dest('vendor/jquery'))
+    .pipe(gulp.dest('dist/vendor/jquery'))
 })
 
 // Copy Font Awesome core files from node_modules to vendor directory
@@ -83,7 +90,7 @@ gulp.task('fontawesome', function() {
     '!node_modules/font-awesome/*.txt',
     '!node_modules/font-awesome/*.md',
     '!node_modules/font-awesome/*.json'
-  ]).pipe(gulp.dest('vendor/font-awesome'))
+  ]).pipe(gulp.dest('dist/vendor/font-awesome'))
 })
 
 // Copy all third party dependencies from node_modules to vendor directory
@@ -100,8 +107,8 @@ gulp.task('browserSync', function() {
 
 // Watch Task that compiles sass and watches for HTML or JS changes and reloads with browserSync
 gulp.task('dev', [
-    'browserSync', 'pages', 'sass',
-    'minify-css', 'minify-js'
+    'browserSync', 'pages', 'sass', 'copy',
+    'minify-css', 'minify-js', 'optimize-img'
   ], function() {
     gulp.watch('scss/*.scss', ['sass']);
     gulp.watch('.tmp/css/*.css', ['minify-css']);
@@ -141,7 +148,7 @@ gulp.task('clean', function() {
 
 gulp.task('copy-to-dist', function() {
   gulp.src([
-    'img/**/*', 'js/**/*', 'vendor/**/*', 'CNAME'
+    'js/**/*', 'CNAME'
   ]).pipe(gulpCopy('dist'));
   return gulp.src([
     'fonts/**/*'
