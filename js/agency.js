@@ -13,7 +13,7 @@ function typer(e, s, d, t) {
     $(e).append(p);
     interval = setInterval(function() {
       var c = (z + 1 <= t[eI].length)? cursor: ""
-      if(t[eI].indexOf('S-P-E-E-D') > -1) {
+      if(t[eI].indexOf('*-*-*-*-*') > -1) {
         speed = 1;
         delay = 1;
         eI = eI + 1;
