@@ -1,0 +1,20 @@
+{
+  "name": "intranerds",
+  "version": "1.0.0",
+  "description": "cd web git pull --rebase # jalar cambios git add index.html # agregar a bateria de cambios a subir git commit -m\"teaser envoltura\" #agregar cambio a repo local git push # agregar cambios al repositorio remoto (github) gulp gh-deploy # desplegar cambios en intranerds.io history | tail -n 20",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"No lint\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merunga/intranerds.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/merunga/intranerds/issues"
+  },
+  "homepage": "https://github.com/merunga/intranerds#readme"
+}

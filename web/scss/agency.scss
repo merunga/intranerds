@@ -9,6 +9,10 @@ body {
   @include body-font;
 }
 
+.intranerds {
+  @include logo-font;
+}
+
 .text-muted {
   color: $gray;
 }
@@ -294,6 +298,23 @@ header {
   }
 }
 
+.about {
+  color: white;
+  text-align: left;
+  .intro-heading {
+    font-size: 24px;
+  }
+  ul {
+    line-height: 1.8em;
+    font-size: 18px;
+    max-width: 650px;
+    list-style-type: square;
+  }
+  h3.roca {
+    // @include body-font;
+  }
+}
+
 // Global Section Styles
 
 section {
@@ -323,9 +344,24 @@ section {
 
 // Services Section
 
-.service-heading {
-  margin: 15px 0;
-  text-transform: none;
+// .service-heading {
+//   margin: 15px 0;
+//   text-transform: none;
+// }
+.servicios-card {
+  margin-top: 25px;
+}
+
+@media(min-width:992px) {
+  .servicios-card {
+    min-height: 570px;
+    position: relative;
+    .bottom-btn {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+  }
 }
 
 .servicios-link {
@@ -338,18 +374,21 @@ section {
     }
   }
 
-  &:hover span {
-    i:nth-child(1) {
-      color: blacK;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      transition: all 0.3s;
-    }
-    i:nth-child(2) {
-      color: #18DD00;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      transition: all 0.3s;
+  &:hover {
+    cursor: default;
+    span {
+      i:nth-child(1) {
+        color: blacK;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+      i:nth-child(2) {
+        color: #18DD00;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+      }
     }
   }
 }

@@ -1,10 +1,14 @@
-<div class="col-md-4 {{offset}}">
-  <a href="#{% block id %}{% endblock %}" class="servicios-link" data-toggle="modal">
+<div class="col-md-4 {{offset}} servicios-card">
+  <!-- <a href="#.." class="servicios-link" data-toggle="modal"> -->
+  <a href="#{% block id %}{% endblock %}" class="servicios-link">
     <span class="fa-stack fa-4x">
       <i class="fa fa-circle fa-stack-2x text-primary"></i>
       <i class="fa fa-{% block icon %}{% endblock %} fa-stack-1x"></i>
     </span>
   </a>
-  <h4 class="service-heading">{% block title %}{% endblock %}</h4>
+  <h3 class="service-heading">{% block title %}{% endblock %}</h3>
   <p class="text-muted">{% block teaser %}{% endblock %}</p>
+  <div class="bottom-btn">
+    <a type="button" class="page-scroll btn btn-primary" href="#contacto">Quieres saber más?</a>
+  </div>
 </div>
