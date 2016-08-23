@@ -299,19 +299,12 @@ header {
 }
 
 .about {
-  color: white;
+  color: $brand-primary;
   text-align: left;
-  .intro-heading {
-    font-size: 24px;
-  }
-  ul {
-    line-height: 1.8em;
-    font-size: 18px;
-    max-width: 650px;
-    list-style-type: square;
-  }
-  h3.roca {
-    // @include body-font;
+  & > * {
+    font-size: 19px;
+    line-height: 25px;
+    word-wrap: break-word;
   }
 }
 

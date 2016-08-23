@@ -44,7 +44,7 @@ gulp.task('sass', function() {
 gulp.task('minify-css', function() {
   return gulp.src('.tmp/css/agency.css')
     .pipe(cleanCSS({ compatibility: 'ie8' }))
-    .pipe(rename({ suffix: '.min' }))
+    // .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist/css'))
     .pipe(browserSync.reload({
       stream: true
@@ -54,9 +54,9 @@ gulp.task('minify-css', function() {
 // Minify JS
 gulp.task('minify-js', function() {
   return gulp.src('js/agency.js')
-    .pipe(uglify())
-    .pipe(header(banner, { pkg: pkg }))
-    .pipe(rename({ suffix: '.min' }))
+    // .pipe(uglify())
+    // .pipe(header(banner, { pkg: pkg }))
+    // .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('js'))
     .pipe(browserSync.reload({
       stream: true
