@@ -740,8 +740,8 @@ section#contacto {
     margin-bottom: 25px;
 
     .form-control {
-      background-color: rgba(0,0,0,0.8);
-      color: $brand-primary;
+      background-color: rgba(0,0,0,0.85);
+      color: white;
       font-size: 19px;
       &::-webkit-input-placeholder {
         color: darken($brand-primary, 20%);
