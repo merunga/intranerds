@@ -1,4 +1,39 @@
 // Agency Theme JavaScript
+// $(function() {
+//   var cursor;
+//   var $input;
+//   
+//   $('.cmd').click(function() {
+//     var $this = $(this);
+//     var $parent = $this.parent();
+//     $input = $parent.find('input');
+//     $input.focus();
+//     
+//     var $cursor = $parent.find('.cursor')
+//     
+//     cursor = window.setInterval(function() {
+//       if ($.css('visibility') === 'visible') {
+//         $cursor.css({ visibility: 'hidden' });
+//       } else {
+//         $cursor.css({ visibility: 'visible' });  
+//       }  
+//     }, 500);
+//     
+//   });
+//   
+//   if($input) {
+//     $input.keyup(function() {
+//       $this.find('span').text($this.val());
+//     });
+//     
+//     $input.blur(function() {
+//       clearInterval(cursor);
+//       $cursor.css({ visibility: 'visible' });    
+//     });
+//   }
+// });
+
+
 function typer(e, s, d, t) {
   var eI = 0;
   var speed = s;
