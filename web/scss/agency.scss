@@ -713,6 +713,10 @@ aside.clientes {
 
 // Contact Section
 
+@mixin placeholder {
+  color: lighten($brand-primary, 10%);
+}
+
 section#contacto {
   background-color: #030e08;
   background-image: url('../img/map-image.jpg');
@@ -737,8 +741,31 @@ section#contacto {
 
     .form-control {
       background-color: rgba(0,0,0,0.8);
-      color: white;
-      font-weight: bold;
+      color: $brand-primary;
+      font-size: 19px;
+      &::-webkit-input-placeholder {
+        color: darken($brand-primary, 20%);
+        @include body-font;
+      }
+      ::-webkit-input-placeholder {
+        color: darken($brand-primary, 20%);
+        @include body-font;
+      }
+      ::-moz-placeholder {
+        color: darken($brand-primary, 20%);
+        @include body-font;
+      } /* firefox 19+ */
+      :-ms-input-placeholder {
+        color: darken($brand-primary, 20%);
+        @include body-font;
+      } /* ie */
+      input:-moz-placeholder {
+        color: darken($brand-primary, 20%);
+        @include body-font;
+      }
+      //  {  } /* firefox 19+ */
+      //  { color:#f00; } /* ie */
+      //  { color:#f00; }
     }
 
     input,
